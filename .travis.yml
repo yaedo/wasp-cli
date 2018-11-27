@@ -18,3 +18,5 @@ deploy:
   file: './release/wasp-$TRAVIS_OS_NAME'
   skip_cleanup: true
   overwrite: true
+  on:
+    tags: true
