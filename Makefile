@@ -4,7 +4,7 @@ build: wasp
 	@cargo build --release
 	@rm -rf ./release
 	@mkdir -p ./release
-	@cp ./target/release/wasp-cli ./release/wasp -f
+	@cp ./target/release/wasp-cli ./release/wasp
 	@strip ./release/wasp
 
 wasp:
