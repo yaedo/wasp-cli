@@ -1,0 +1,13 @@
+[package]
+name = "wasp-cli"
+version = "0.1.0"
+authors = ["Cameron Bytheway <bytheway.cameron@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+structopt = "0.2"
+wasp-app-route = { path = "./wasp/app/wasp-app-route", features = ["dev"] }
+
+[profile.release]
+lto = true
+panic = "abort"

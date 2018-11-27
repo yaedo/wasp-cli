@@ -1,1 +1,1 @@
-# yaedo-cli
+# wasp-cli
