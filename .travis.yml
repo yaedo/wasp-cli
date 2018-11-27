@@ -14,10 +14,9 @@ before_install:
 install:
   - make wasp
 script:
-  - cargo build --release
-  - strip ./target/release/wasp-cli
+  - make
 deploy:
   provider: releases
   api_key: 'GITHUB_AUTH_TOKEN'
-  file: './target/release/wasp-cli'
+  file: './release/wasp'
   skip_cleanup: true
