@@ -15,6 +15,6 @@ script:
 deploy:
   provider: releases
   api_key: $GITHUB_AUTH_TOKEN
-  file: './release/wasp'
+  file: './release/wasp-$TRAVIS_OS_NAME'
   skip_cleanup: true
   overwrite: true
