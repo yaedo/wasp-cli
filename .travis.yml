@@ -8,15 +8,13 @@ rust:
 cache: cargo
 before_install:
   - echo -e "machine github.com\n  login $GITHUB_AUTH_TOKEN" > ~/.netrc
-  - git config --local user.name "Cameron Bytheway"
-  - git config --local user.email "bytheway.cameron@gmail.com"
-  - git tag "$TRAVIS_TAG-$TRAVIS_OS_NAME"
 install:
   - make wasp
 script:
   - make
 deploy:
   provider: releases
-  api_key: 'GITHUB_AUTH_TOKEN'
+  api_key: $GITHUB_AUTH_TOKEN
   file: './release/wasp'
   skip_cleanup: true
+  overwrite: true
