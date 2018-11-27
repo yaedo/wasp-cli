@@ -1,21 +1,30 @@
 if: tag IS present
-os:
-  - linux
-  - osx
+env:
+  global:
+    - WASP_VERSION=9cc5cbd1134744de4c805f5f685dd03599e07c6f
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+      env: WASP_RELEASE=wasp.deb
+    - os: osx
+      env: WASP_RELEASE=wasp-macos
+    - os: windows
+      env: WASP_RELEASE=wasp.exe
 language: rust
 rust:
   - nightly-2018-11-26
 cache: cargo
 before_install:
-  - echo -e "machine github.com\n  login $GITHUB_AUTH_TOKEN" > ~/.netrc
+  - echo -e "machine github.com\n  login $GITHUB_AUTH_TOKEN" > .netrc
 install:
-  - make wasp
+  - ./install
 script:
-  - make
+  - ./build
 deploy:
   provider: releases
   api_key: $GITHUB_AUTH_TOKEN
-  file: './release/wasp-$TRAVIS_OS_NAME'
+  file: './release/$WASP_RELEASE'
   skip_cleanup: true
   overwrite: true
   on:

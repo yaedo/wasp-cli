@@ -1,0 +1,6 @@
+#!/bin/sh
+
+curl -L \
+  --netrc-file .netrc \
+  https://github.com/camshaft/wasp/archive/$WASP_VERSION.tar.gz | tar xz
+mv wasp-$WASP_VERSION wasp

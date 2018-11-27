@@ -1,0 +1,25 @@
+#!/bin/sh
+
+set -e
+
+case $TRAVIS_OS_NAME in
+    osx)
+        cargo build --release
+        rm -rf ./release
+        mkdir -p ./release
+        cp ./target/release/wasp ./release/$WASP_RELEASE
+        strip ./release/$WASP_RELEASE
+        ;;
+    windows)
+        RUSTFLAGS='-C target-feature=+crt-static' cargo build --release
+        rm -rf ./release
+        mkdir -p ./release
+        cp ./target/release/wasp.exe ./release/$WASP_RELEASE
+        ;;
+    *)
+        rm -rf ./release
+        mkdir -p ./release
+        # TODO investigate static linking
+        cargo install cargo-deb
+        cargo deb --output ./release/$WASP_RELEASE
+esac
