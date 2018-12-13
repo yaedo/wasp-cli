@@ -20,6 +20,6 @@ case $TRAVIS_OS_NAME in
         rm -rf ./release
         mkdir -p ./release
         # TODO investigate static linking
-        cargo install cargo-deb
+        cargo install --force cargo-deb
         cargo deb --output ./release/$WASP_RELEASE
 esac
