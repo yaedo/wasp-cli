@@ -1,7 +1,7 @@
 if: tag IS present
 env:
   global:
-    - WASP_VERSION=45e5c100f600ebfbd606dc801e224936298c3cca
+    - WASP_VERSION=a2faba63c0dc1137943e8c3dbf91846a7f86550f
 matrix:
   include:
     - os: linux
