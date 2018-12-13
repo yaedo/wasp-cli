@@ -15,7 +15,7 @@ enum Opt {
         #[structopt(name = "MODULE")]
         module: String,
 
-        #[structopt(short = "f", long = "function", default_value = "\"main\"")]
+        #[structopt(short = "f", long = "function", default_value = "\"run\"")]
         function: String,
 
         #[structopt(short = "p", long = "port", default_value = "5000")]
