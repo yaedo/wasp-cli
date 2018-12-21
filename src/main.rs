@@ -1,4 +1,4 @@
-use std::env;
+use std::env::set_var;
 use structopt::clap::AppSettings;
 use structopt::StructOpt;
 use wasp_app_route::start;
@@ -20,6 +20,9 @@ enum Opt {
 
         #[structopt(short = "p", long = "port", default_value = "5000")]
         port: usize,
+
+        #[structopt(short = "e", long = "env-file")]
+        env_file: Option<String>,
     },
 
     #[structopt(name = "deploy")]
@@ -49,14 +52,20 @@ fn main() {
             module,
             function,
             port,
-        } => run(module, function, port),
+            env_file,
+        } => run(module, function, port, env_file),
         _ => unimplemented!(),
     }
 }
 
-fn run(module: String, function: String, port: usize) {
-    env::set_var("WASP_PLATFORM_FILE", module);
-    env::set_var("WASP_PLATFORM_ENTRY_FUNCTION", function);
-    env::set_var("PORT", port.to_string());
+fn run(module: String, function: String, port: usize, env_file: Option<String>) {
+    if let Some(file) = env_file {
+        dotenv::from_filename(file).expect("Could not load env file");
+    }
+
+    set_var("WASP_PLATFORM_FILE", module);
+    set_var("WASP_PLATFORM_ENTRY_FUNCTION", function);
+    set_var("PORT", port.to_string());
+
     start();
 }

@@ -8,6 +8,7 @@ readme = "README.md"
 license = "MIT"
 
 [dependencies]
+dotenv = "0.13.0"
 structopt = "0.2"
 wasp-app-route = { path = "./wasp/app/wasp-app-route", features = ["dev"] }
 
