@@ -2,8 +2,6 @@
 
 ## Installation
 
-Download the latest version of wasp [here](https://github.com/yaedo/wasp-cli/releases)
-
 ### macos
 
 ```
