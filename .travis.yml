@@ -13,7 +13,7 @@ matrix:
       env: WASP_RELEASE=wasp.exe
 language: rust
 rust:
-  - nightly-2018-12-05
+  - nightly-2019-02-21
 cache: cargo
 before_install:
   - echo -e "machine github.com\n  login $GITHUB_AUTH_TOKEN" > .netrc
