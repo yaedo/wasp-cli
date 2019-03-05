@@ -35,5 +35,5 @@ addons:
     update: true
     packages:
       - libdbus-1-dev
-      - libsecret-dev
+      - libsecret-1-dev
       - libgmp3-dev
