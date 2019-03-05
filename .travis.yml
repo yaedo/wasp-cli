@@ -29,3 +29,11 @@ deploy:
   overwrite: true
   on:
     tags: true
+
+addons:
+  apt:
+    update: true
+    packages:
+      - libdbus-1-dev
+      - libsecret-dev
+      - libgmp3-dev
