@@ -1,7 +1,7 @@
 if: tag IS present
 env:
   global:
-    - WASP_VERSION=698f2cae5f9b993c8bcc7922c629aeba27628ebf
+    - WASP_VERSION=f8abb04408a90258e541acdfb137149c05d96aa5
 matrix:
   include:
     - os: linux
@@ -13,7 +13,7 @@ matrix:
       env: WASP_RELEASE=wasp.exe
 language: rust
 rust:
-  - nightly-2019-02-21
+  - nightly-2019-03-06
 cache: cargo
 before_install:
   - echo -e "machine github.com\n  login $GITHUB_AUTH_TOKEN" > .netrc

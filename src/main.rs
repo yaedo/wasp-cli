@@ -35,6 +35,9 @@ enum Opt {
 
         #[structopt(short = "P", long = "protected-cdn-directory")]
         protected_cdn_directory: Option<String>,
+
+        #[structopt(short = "k", long = "kvs-directory", default_value = ".db")]
+        kvs_directory: String,
     },
 
     /// Upload a WASM module
@@ -114,7 +117,6 @@ struct ConfigureOpts {
 
     // TODO args
     // TODO log drains
-    // TODO kvs
     #[structopt(short = "e", long = "env", parse(try_from_str = "parse_env"))]
     env: Vec<(String, JsonValue)>,
 }
@@ -155,6 +157,7 @@ fn main() {
             env_file,
             cdn_directory,
             protected_cdn_directory,
+            kvs_directory,
         } => run(
             module,
             function,
@@ -162,6 +165,7 @@ fn main() {
             env_file,
             cdn_directory,
             protected_cdn_directory,
+            kvs_directory,
         ),
         Opt::Upload { source, module } => upload(source.into(), module),
         Opt::Create {
@@ -192,6 +196,7 @@ fn run(
     env_file: Option<String>,
     cdn_directory: Option<String>,
     protected_cdn_directory: Option<String>,
+    kvs_directory: String,
 ) -> Result<(), Error> {
     if let Some(file) = env_file {
         dotenv::from_filename(file).expect("Could not load env file");
@@ -199,6 +204,7 @@ fn run(
 
     set_var("WASP_PLATFORM_FILE", module);
     set_var("WASP_PLATFORM_ENTRY_FUNCTION", function);
+    set_var("WASP_PLATFORM_KVS_DIR", kvs_directory);
     set_var("PORT", port.to_string());
 
     if let Some(dir) = cdn_directory {
